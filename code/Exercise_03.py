@@ -8,7 +8,7 @@ import random
 import json
 
 
-N: int = 3
+N: int = 5 # number of games
 sample_ms = 10.0
 on_ms = 500
 
@@ -47,7 +47,7 @@ def write_json(json_filename: str, data: dict) -> None:
 
 def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to type 'str'
     # %% collate results
-    misses = t.count('X') # changes from type 'None' to 'X'
+    misses = t.count('X')
     print(f"You missed the light {misses} / {len(t)} times")
 
     t_good = [x for x in t if isinstance(x, int) and x > 0]
@@ -67,7 +67,7 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     if t_good:
         min_response_time = min(t_good)
         max_response_time = max(t_good)
-        avg_response_time = sum(t_good) / len(t_good)
+        avg_response_time = sum(t_good) / len(t_good) # length of t_good or t?
     else:
         None
     
