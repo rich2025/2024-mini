@@ -47,7 +47,7 @@ def write_json(json_filename: str, data: dict) -> None:
 
 def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to type 'str'
     # %% collate results
-    misses = t.count(None)
+    misses = t.count('X') # changes from type 'None' to 'X'
     print(f"You missed the light {misses} / {len(t)} times")
 
     t_good = [x for x in t if isinstance(x, int) and x > 0]
