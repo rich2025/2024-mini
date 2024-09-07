@@ -45,9 +45,9 @@ def write_json(json_filename: str, data: dict) -> None:
         json.dump(data, f)
 
 
-def scorer(t: list[int | str]) -> None:
+def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to type 'str'
     # %% collate results
-    misses = t.count('X')
+    misses = t.count(None)
     print(f"You missed the light {misses} / {len(t)} times")
 
     t_good = [x for x in t if isinstance(x, int) and x > 0]
@@ -58,6 +58,12 @@ def scorer(t: list[int | str]) -> None:
     # and score (non-misses / total flashes) i.e. the score a floating point number
     # is in range [0..1]
     
+    # initialize statistics to value of 0
+    min_response_time = 0
+    max_response_time = 0
+    avg_response_time = 0
+    
+    # calculate statistics
     if t_good:
         min_response_time = min(t_good)
         max_response_time = max(t_good)
@@ -67,6 +73,7 @@ def scorer(t: list[int | str]) -> None:
     
     
     data = {
+        'Response Times': t,
         'Minimum Response Time': min_response_time,
         'Maximum Response Time': max_response_time,
         'Average Response Time': avg_response_time
@@ -106,8 +113,9 @@ if __name__ == "__main__":
                 t0 = time.ticks_diff(time.ticks_ms(), tic)
                 led.low()
                 break
-        if t0 is None:
-                t0 = 'X'
+        if t0 is None: # display a miss as 'X'
+            t0 = 'X'
+            
         t.append(t0)
 
         led.low()
