@@ -6,4 +6,6 @@ Image of output and setup in images folder.
 **Exercise 02**\
 Code in code folder and video in images folder.
 
-**Exercise 03**
+**Exercise 03**\
+Code for frontend, code for backend, and sample .json files in code folder.\
+
