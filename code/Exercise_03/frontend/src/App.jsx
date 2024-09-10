@@ -8,23 +8,29 @@ import { gapi } from 'gapi-script';
 const clientId = "819894863579-nlh5evpomia8q6h7mn1h2j5m1ocpetl7.apps.googleusercontent.com";
 
 function App() {
-  
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: ""
-      })
-    };
+        scope: 'profile email'
+      }).then(() => {
+        const auth = gapi.auth2.getAuthInstance();
+        setIsSignedIn(auth.isSignedIn.get());
+        auth.isSignedIn.listen(setIsSignedIn);
+      }).catch(error => {
+        console.error("Error initializing gapi:", error);
+      });
+    }
     gapi.load('client:auth2', start);
-  })
+  }, []);
 
   return (
     <>
       <div>
       <h1>Response Time Game</h1>
-      <LoginButton />
-      <LogoutButton />
+      {!isSignedIn ? <LoginButton /> : <LogoutButton />}
    
       </div>
       
