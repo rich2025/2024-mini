@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "firebase": "^10.13.1",
     "gapi-script": "^1.2.0"
   }
 }
