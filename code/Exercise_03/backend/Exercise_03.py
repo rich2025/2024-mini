@@ -6,12 +6,15 @@ from machine import Pin
 import time
 import random
 import json
+import urequests as requests
+import network
 
+firebase_url = "https://ec463-mini-ry-sk-default-rtdb.firebaseio.com"
+firebase_secret = "U1zevgQHhKQLamXSsfb1IdpYMNi1vVxIGIJH5M21"
 
-N: int = 5 # number of games
+N: int = 3 # number of games
 sample_ms = 10.0
 on_ms = 500
-
 
 def random_time_interval(tmin: float, tmax: float) -> float:
     """return a random time interval between max and min"""
@@ -44,6 +47,16 @@ def write_json(json_filename: str, data: dict) -> None:
     with open(json_filename, "w") as f:
         json.dump(data, f)
 
+def upload_to_firestore(collection, document, data):
+    # function to upload data using HTTP requests to interface with Firestore's REST API
+    
+    url = f"{firebase_url}/{collection}/{document}.json?auth={firebase_secret}"
+    headers = {'Content-Type': 'application/json'}
+    response = requests.put(url, data=json.dumps(data), headers=headers)
+    if response.status_code == 200:
+        print("Data Upload Successful")
+    else:
+        print("Data Upload Failed:", response.text)
 
 def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to type 'str'
     # %% collate results
@@ -78,7 +91,7 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
         'Maximum Response Time': max_response_time,
         'Average Response Time': avg_response_time
         }
-
+    
     # %% make dynamic filename and write JSON
 
     now: tuple[int] = time.localtime()
@@ -89,11 +102,24 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     print("write", filename)
 
     write_json(filename, data)
-
-
+    
+    collection_name = f"{now_str}" # write date and time as collection name
+    document_id = "Data"
+    
+    # Upload data to Firestore
+    upload_to_firestore(collection_name, document_id, data) # upload data to realtime database 
+    
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
 
+    wlan = network.WLAN(network.STA_IF) # connection to the network
+    wlan.active(True)
+    wlan.connect('mattrichdanbl', 'xy1234321*')
+    while not wlan.isconnected():
+        pass
+
+    print("Connected to Wi-Fi")
+    
     led = Pin("LED", Pin.OUT)
     button = Pin(16, Pin.IN, Pin.PULL_UP)
 
