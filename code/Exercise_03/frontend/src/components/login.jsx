@@ -1,30 +1,22 @@
-import { GoogleLogin } from '@leecheuk/react-google-login';
+import React from 'react';
+import { auth, provider, signInWithPopup, signOut } from '../firebase';
 
-// with reference to https://www.youtube.com/watch?v=HtJKUQXmtok&t=172s
-
-const clientID = "819894863579-nlh5evpomia8q6h7mn1h2j5m1ocpetl7.apps.googleusercontent.com";
-
-function Login() {
-
-    const onSuccess = (res) => {
-        console.log("Login Successful, Current User: ", res.profileObj)
+const Login = () => {  // login component for Google Auth login as pop-up for firebase
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('User info:', user);
+    } catch (error) {
+      console.error('Error during login:', error);
     }
+  };
 
-    const onFailure = (res) => {
-        console.log("Login Failed. res: ", res)
-    }
-    return(
-        <div id = "signInButton">
-            <GoogleLogin
-                clientID = {clientID}
-                buttonText = "Login"
-                onSuccess = {onSuccess}
-                onFailure = {onFailure}
-                cookiePolicy = {'single_host_origin'}
-                isSignedIn = {true}
-            />
-        </div>
-    )
-}
+  return (
+    <div>
+      <button onClick={handleLogin}>Login with Google</button>
+    </div>
+  );
+};
 
-export default Login
+export default Login;
