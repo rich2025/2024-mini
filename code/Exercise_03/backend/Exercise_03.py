@@ -84,14 +84,24 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     else:
         None
     
-    
-    data = {
-        'Response Times': t,
-        'Minimum Response Time': min_response_time,
-        'Maximum Response Time': max_response_time,
-        'Average Response Time': avg_response_time
+    #changes start here ------------------------
+    #put userid from front end as "userid"
+        userid ='insert userid here'
+        #same data struct
+        data = {
+                "Response Times": t,
+                "Minimum Response Time": min_response_time,
+                "Maximum Response Time": max_response_time,
+                "Average Response Time": avg_response_time
         }
-    
+
+        #uses the userid to sort data
+        path = 'users/{}/data.json'.format(userid)
+
+        response = urequests.post(firebase_url + path +'?auth=' + firebase_secret,json=data)
+        print(response.text)
+    #end here---------------------------------
+
     # %% make dynamic filename and write JSON
 
     now: tuple[int] = time.localtime()
@@ -103,11 +113,11 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
 
     write_json(filename, data)
     
-    collection_name = f"{now_str}" # write date and time as collection name
-    document_id = "Data"
+    #collection_name = f"{now_str}" # write date and time as collection name
+    #document_id = "Data"
     
     # Upload data to Firestore
-    upload_to_firestore(collection_name, document_id, data) # upload data to realtime database 
+    #upload_to_firestore(collection_name, document_id, data) # upload data to realtime database
     
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
