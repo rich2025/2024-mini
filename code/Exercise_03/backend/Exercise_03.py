@@ -8,6 +8,7 @@ import random
 import json
 import urequests as requests
 import network
+import urequests
 
 firebase_url = "https://ec463-mini-ry-sk-default-rtdb.firebaseio.com"
 firebase_secret = "U1zevgQHhKQLamXSsfb1IdpYMNi1vVxIGIJH5M21"
@@ -76,6 +77,7 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     max_response_time = 0
     avg_response_time = 0
     
+
     # calculate statistics
     if t_good:
         min_response_time = min(t_good)
@@ -83,20 +85,38 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
         avg_response_time = sum(t_good) / len(t_good) # length of t_good or t?
     else:
         None
-    
-    #changes start here ------------------------
-    #put userid from front end as "userid"
-        userid ='insert userid here'
-        #same data struct
-        data = {
-                "Response Times": t,
-                "Minimum Response Time": min_response_time,
-                "Maximum Response Time": max_response_time,
-                "Average Response Time": avg_response_time
+
+    def fetch_user():
+        user_id = None  # Initialize the variable to store user ID
+        try:
+            response = urequests.get('http://127.0.0.1:5000/store_user_id')
+            if response.status_code == 200:
+                data = response.json()
+                user_id = data.get('User ID')  # Extract userId from JSON
+                if user_id is not None:
+                    print('User ID:', user_id)
+                else:
+                    print('User ID not found in response')
+            else:
+                print('Failed to fetch data:', response.status_code)
+            response.close()
+        except Exception as e:
+            print('Error:', e)
+        
+        return user_id  # Return the user_id
+
+    user_id = fetch_user()
+
+    data = {
+        'User ID' : er_id,
+        'Response Times': t,
+        'Minimum Response Time': min_response_time,
+        'Maximum Response Time': max_response_time,
+        'Average Response Time': avg_response_time
         }
 
         #uses the userid to sort data
-        path = 'users/{}/data.json'.format(userid)
+        path = 'users/{}/data.json'.format(er_id)
 
         response = urequests.post(firebase_url + path +'?auth=' + firebase_secret,json=data)
         print(response.text)
