@@ -90,10 +90,7 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     def fetch_user(): # function to fetch user id from flask server
         user_id = None  # initialize variable
 =======
-
-    def fetch_user():
-        user_id = None  # Initialize the variable to store user ID
->>>>>>> eb56f13cc752239e676165122d88330da052fdea
+>
         try:
             response = urequests.get('http://10.0.0.53:5000/get_user_data') # hosted on local ipv4 address
             if response.status_code == 200:
@@ -115,7 +112,7 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     user_id = fetch_user() # capture user_id
 
     data = {
-        'User ID' : er_id,
+        'User ID' : user_id,
         'Response Times': t,
         'Minimum Response Time': min_response_time,
         'Maximum Response Time': max_response_time,
