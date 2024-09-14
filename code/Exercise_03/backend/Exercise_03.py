@@ -85,17 +85,21 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
         avg_response_time = sum(t_good) / len(t_good) # length of t_good or t?
     else:
         None
+<<<<<<< HEAD
     
-    
-    
-    
+    def fetch_user(): # function to fetch user id from flask server
+        user_id = None  # initialize variable
+=======
+
     def fetch_user():
         user_id = None  # Initialize the variable to store user ID
+>>>>>>> eb56f13cc752239e676165122d88330da052fdea
         try:
-            response = urequests.get('http://127.0.0.1:5000/store_user_id')
+            response = urequests.get('http://10.0.0.53:5000/get_user_data') # hosted on local ipv4 address
             if response.status_code == 200:
-                data = response.json()
-                user_id = data.get('User ID')  # Extract userId from JSON
+                data = response.json()  # get response in JSON
+                user_id = data.get('userId')  # extract user id from data
+
                 if user_id is not None:
                     print('User ID:', user_id)
                 else:
@@ -103,21 +107,28 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
             else:
                 print('Failed to fetch data:', response.status_code)
             response.close()
-        except Exception as e:
+        except Exception as e: # print error message if error
             print('Error:', e)
-        
-        return user_id  # Return the user_id
 
-    user_id = fetch_user()
+        return user_id  # return the user_id
+
+    user_id = fetch_user() # capture user_id
 
     data = {
-        'User ID' : user_id,
+        'User ID' : er_id,
         'Response Times': t,
         'Minimum Response Time': min_response_time,
         'Maximum Response Time': max_response_time,
         'Average Response Time': avg_response_time
         }
-    
+
+        #uses the userid to sort data
+        path = 'users/{}/data.json'.format(er_id)
+
+        response = urequests.post(firebase_url + path +'?auth=' + firebase_secret,json=data)
+        print(response.text)
+    #end here---------------------------------
+
     # %% make dynamic filename and write JSON
 
     now: tuple[int] = time.localtime()
@@ -129,15 +140,16 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
 
     write_json(filename, data)
     
-    collection_name = f"{now_str}" # write date and time as collection name
-    document_id = "Data"
+    #collection_name = f"{now_str}" # write date and time as collection name
+    #document_id = "Data"
     
     # Upload data to Firestore
-    upload_to_firestore(collection_name, document_id, data) # upload data to realtime database 
+    #upload_to_firestore(collection_name, document_id, data) # upload data to realtime database
     
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
 
+    # referenced https://projects.raspberrypi.org/en/projects/get-started-pico-w/2
     wlan = network.WLAN(network.STA_IF) # connection to the network
     wlan.active(True)
     wlan.connect('mattrichdanbl', 'xy1234321*')
