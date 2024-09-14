@@ -85,12 +85,10 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
         avg_response_time = sum(t_good) / len(t_good) # length of t_good or t?
     else:
         None
-<<<<<<< HEAD
+
     
     def fetch_user(): # function to fetch user id from flask server
         user_id = None  # initialize variable
-=======
->
         try:
             response = urequests.get('http://10.0.0.53:5000/get_user_data') # hosted on local ipv4 address
             if response.status_code == 200:
@@ -120,10 +118,10 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
         }
 
         #uses the userid to sort data
-        path = 'users/{}/data.json'.format(er_id)
+   # path = 'users/{}/data.json'.format(user_id)
 
-        response = urequests.post(firebase_url + path +'?auth=' + firebase_secret,json=data)
-        print(response.text)
+    #response = urequests.post(firebase_url + path +'?auth=' + firebase_secret,json=data)
+    #print(response.text)
     #end here---------------------------------
 
     # %% make dynamic filename and write JSON
@@ -137,11 +135,11 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
 
     write_json(filename, data)
     
-    #collection_name = f"{now_str}" # write date and time as collection name
-    #document_id = "Data"
+    collection_name = f"{now_str}" # write date and time as collection name
+    document_id = "Data"
     
     # Upload data to Firestore
-    #upload_to_firestore(collection_name, document_id, data) # upload data to realtime database
+    upload_to_firestore(collection_name, document_id, data) # upload data to realtime database
     
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files

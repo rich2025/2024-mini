@@ -3,9 +3,8 @@ import Login from './components/Login';
 import { auth } from './firebase'; 
 import { getDatabase, ref, set } from 'firebase/database'; 
 import axios from 'axios';
-
-import {onValue} from 'firebase/database';
-import {database} from './firebase';
+// import {onValue} from 'firebase/database';
+// import {database} from './firebase';
 
 const App = () => {
   const [user, setUser] = React.useState(null);
@@ -45,26 +44,26 @@ const App = () => {
 
   //main changes start here --------------------------
   //data variable (used to display to website)
-  const [data,setDat] = useState(null);
+  // const [data,setDat] = useState(null);
 
-  useEffect(() => {
-    const fetchData = () => {
-      //sets the id to the userid member of current user might change later
-      const userId = auth.currentUser.uid;
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     //sets the id to the userid member of current user might change later
+  //     const userId = auth.currentUser.uid;
 
-      //might need to change 'data' to the specific entry wanted
-      const dataRef = ref(database, `users/${userId}/data`);
+  //     //might need to change 'data' to the specific entry wanted
+  //     const dataRef = ref(database, `users/${userId}/data`);
 
-      onValue(dataRef, (snapshot) => {
-        const data = snapshot.val();
-        setData(data);
-      }, {
-        onlyOnce: true //fetches only once per mount (maybee delete this later)
-      });
+  //     onValue(dataRef, (snapshot) => {
+  //       const data = snapshot.val();
+  //       setData(data);
+  //     }, {
+  //       onlyOnce: true //fetches only once per mount (maybee delete this later)
+  //     });
 
-    };
-    fetchData();
-  },[]);
+  //   };
+  //   fetchData();
+  // },[]);
   //----------------------------------------------
   // end here
 
