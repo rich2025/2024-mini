@@ -1,14 +1,14 @@
 import React,{useEffect, useState} from 'react';
 import Login from './components/Login';
 import { auth } from './firebase'; 
-import { getDatabase, ref, set } from 'firebase/database'; 
+import {getDatabase, onValue, ref, set} from 'firebase/database';
 import axios from 'axios';
 // import {onValue} from 'firebase/database';
 // import {database} from './firebase';
 
 const App = () => {
   const [user, setUser] = React.useState(null);
-
+  const [data,setData] = useState(null);
   // with reference to https://medium.com/@balogunkehinde3/implementing-user-authentication-with-firebase-and-reactjs-c2aa75458d3c
 
   React.useEffect(() => {
@@ -32,6 +32,29 @@ const App = () => {
           displayName: currentUser.displayName,
           email: currentUser.email
         });
+
+        if(currentUser) {
+
+            const fetchData = () => {
+              //sets the id to the userid member of current user might change later
+              const userId = auth.currentUser.uid;
+
+              //might need to change 'data' to the specific entry wanted
+              //const dataRef = ref(database, `users/${userId}/data`);
+              const dataRef = ref(database, `2024-9-14T11_34_52/Data`);
+              onValue(dataRef, (snapshot) => {
+                const data = snapshot.val();
+                setData(data);
+              }, {
+                onlyOnce: true //fetches only once per mount (maybee delete this later)
+              });
+
+            };
+            fetchData();
+
+          //----------------------------------------------
+          // end here
+        }
       }
     });
 
@@ -44,28 +67,7 @@ const App = () => {
 
   //main changes start here --------------------------
   //data variable (used to display to website)
-  // const [data,setDat] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     //sets the id to the userid member of current user might change later
-  //     const userId = auth.currentUser.uid;
-
-  //     //might need to change 'data' to the specific entry wanted
-  //     const dataRef = ref(database, `users/${userId}/data`);
-
-  //     onValue(dataRef, (snapshot) => {
-  //       const data = snapshot.val();
-  //       setData(data);
-  //     }, {
-  //       onlyOnce: true //fetches only once per mount (maybee delete this later)
-  //     });
-
-  //   };
-  //   fetchData();
-  // },[]);
-  //----------------------------------------------
-  // end here
 
   return (
     <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>
@@ -73,6 +75,14 @@ const App = () => {
         <div style={{ textAlign: 'center' }}>
           <h1>Welcome, {user.displayName}</h1>
           <h1>{user.uid}</h1>
+          {data ?(
+              <div>
+                  <h2>Data:</h2>
+                  <pre>{JSON.stringify(data,null,2)})</pre>
+              </div>
+          ) : (
+              <p>Loading data...</p>
+          )}
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (

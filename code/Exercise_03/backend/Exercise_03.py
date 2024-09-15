@@ -135,7 +135,8 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
 
     write_json(filename, data)
     
-    collection_name = f"{now_str}" # write date and time as collection name
+    #collection_name = f"{now_str}" # write date and time as collection name
+    collection_name = f"{user_id}"
     document_id = "Data"
     
     # Upload data to Firestore
