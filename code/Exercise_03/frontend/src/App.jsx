@@ -41,7 +41,7 @@ const App = () => {
 
               //might need to change 'data' to the specific entry wanted
               //const dataRef = ref(database, `users/${userId}/data`);
-              const dataRef = ref(database, `2024-9-14T11_34_52/Data`);
+              const dataRef = ref(database, `${userId}/Data`);
               onValue(dataRef, (snapshot) => {
                 const data = snapshot.val();
                 setData(data);
