@@ -1,17 +1,28 @@
+//From React
 import React,{useEffect, useState} from 'react';
-import Login from './components/Login';
-import { auth } from './firebase'; 
-import {getDatabase, onValue, ref, set} from 'firebase/database';
-import axios from 'axios';
-// import {onValue} from 'firebase/database';
-// import {database} from './firebase';
 
+//For Authentication
+import Login from './components/Login';
+import { auth } from './firebase';
+
+//For Firebase Realtime Database
+import {getDatabase, onValue, ref, set} from 'firebase/database';
+
+//For RESTAPI
+import axios from 'axios';
+
+//Web App Start
 const App = () => {
+
+  //Instantiate User and Data
   const [user, setUser] = React.useState(null);
   const [data,setData] = useState(null);
   // with reference to https://medium.com/@balogunkehinde3/implementing-user-authentication-with-firebase-and-reactjs-c2aa75458d3c
 
+
   React.useEffect(() => {
+
+    //user update
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
       
@@ -33,25 +44,24 @@ const App = () => {
           email: currentUser.email
         });
 
-        if(currentUser) {
-
+        //if there is a user
+        if(currentUser){
             const fetchData = () => {
-              //sets the id to the userid member of current user might change later
+              //sets the id to the userid member of current user
               const userId = auth.currentUser.uid;
 
-              //might need to change 'data' to the specific entry wanted
-              //const dataRef = ref(database, `users/${userId}/data`);
-              const dataRef = ref(database, `${userId}/Data`);
+              //referencing the userid in the database tree and getting data
+              //const dataRef = ref(database, `${userId}/Data`);
               onValue(dataRef, (snapshot) => {
                 const data = snapshot.val();
                 setData(data);
               }, {
-                onlyOnce: true //fetches only once per mount (maybee delete this later)
+                onlyOnce: true //fetches only once per mount
               });
+
 
             };
             fetchData();
-
           //----------------------------------------------
           // end here
         }
@@ -77,11 +87,22 @@ const App = () => {
           <h1>{user.uid}</h1>
           {data ?(
               <div>
+                  <h2>UserId: {data['User ID']}</h2>
                   <h2>Data:</h2>
-                  <pre>{JSON.stringify(data,null,2)})</pre>
+                  <div>
+                    <h3>Minimum Response Time: {data['Minimum Response Time']}</h3>
+                    <h3>Maximum Response Time: {data['Maximum Response Time']}</h3>
+                    <h3>Average Response Time: {data['Average Response Time']}</h3>
+                    <h3>Response Times:</h3>
+                    <ul>
+                      {data['Response Times'] && data['Response Times'].map((time,index) =>(
+                          <li key={index}>{time} ms</li>
+                      ))}
+                    </ul>
+                  </div>
               </div>
           ) : (
-              <p>Loading data...</p>
+              <p>Please Wait: Loading data...</p>
           )}
           <button onClick={handleLogout}>Logout</button>
         </div>
