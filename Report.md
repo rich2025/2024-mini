@@ -5,7 +5,7 @@ Image of output and setup in 'media' folder.
 
 ## Exercise 02
 Code in 'code' folder as Exercise_02.py.\
-Video in 'media' folder as Exercise_02_MusicVideo.mov.\
+Video in 'media' folder as Exercise_02_MusicVideo.mov.
 
 ## Exercise 03
 Code and .json files for Exercise 3 in 'code/Exercise_03' folder. \
