@@ -15,3 +15,5 @@ Demo video in 'media' folder.
 - Utilize REST API's to communicate information via HTTP requests
 - Store data in Firebase Realtime Database with Google Authentication
 
+For all exercises, Visual Studio Code is used.
+
