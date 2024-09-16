@@ -5,6 +5,7 @@ Image of output and setup in 'media' folder.
 
 ## Exercise 02
 Code in 'code' folder as Exercise_02.py.\
+Added dictionary of tones with corresponding frequencies, added Twinkle Twinkle Little Star song with 'X' denoting pause.\
 Video in 'media' folder as Exercise_02_MusicVideo.mov.
 
 ## Exercise 03
