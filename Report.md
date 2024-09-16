@@ -11,7 +11,7 @@ Code and .json files for Exercise 3 in 'code/Exercise_03' folder. \
 Demo video in 'media' folder.
 ### Design
 - Full stack web application
-- React frontend, Python/Flask backend
+- React/Vite frontend, Python/Flask backend
 - Utilize REST API's to communicate information via HTTP requests
 - Store data in Firebase Realtime Database with Google Authentication
 
