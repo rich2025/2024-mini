@@ -20,7 +20,7 @@ Demo videos and screenshots in 'media' folder.
 ### Demo Video (media/Exercise03_Demo_Video.md)
 1) In the demonstration video, we start by logging into an account with pre-existing response time data. This data can be seen in the Firebase Realtime Database.
 2) Under the same user, a new game is played. The data is updated for the new game upon completion both in the database and in the web application. 
-3) Then, a new user logs in with no pre-existing data. Thus, no data is displayed on the web application and in the database for their specific user ID. The new user logs in and plays the game. 4)
+3) Then, a new user logs in with no pre-existing data. Thus, no data is displayed on the web application and in the database for their specific user ID. The new user logs in and plays the game.
 4) Their data is uploaded to the database and updated in the web application.
 5) The new user then logs out and we return to the original user. The original user still retains their respective response time data rather than that of the new user.
 
