@@ -8,7 +8,7 @@ Code in 'code' folder and video in 'media' folder.
 
 ## Exercise 03
 Code and .json files for Exercise 3 in 'code/Exercise_03' folder. \
-Demo video in 'media' folder.
+Demo videos and screenshots in 'media' folder.
 ### Design
 - Full stack web application
 - React/Vite frontend, Python/Flask backend
