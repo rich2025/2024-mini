@@ -25,8 +25,8 @@ Demo videos and screenshots in 'media' folder.
 5) The new user then logs out and we return to the original user. The original user still retains their respective response time data rather than that of the new user.
 
 ### Game Video (media/Exercise03_Game_Video.md)
-This video shows the response time game being played on the Raspberry Pi Pico. The response time data is updated in the database and in the web application. \
-Note: This video was taken directly after the Demo Video described above.
+- This video shows the response time game being played on the Raspberry Pi Pico. The response time data is updated in the database and in the web application. \
+- Note: This video was taken directly after the Demo Video described above.
 
 For all exercises, Visual Studio Code is used.
 
