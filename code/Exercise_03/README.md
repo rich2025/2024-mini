@@ -1,4 +1,4 @@
-**Install Dependencies**\  
+**Install Dependencies**
 Navigate to frontend folder \
 Run `npm install`\
 Run `npm install gapi-script`\

@@ -1,0 +1,32 @@
+{
+  "9L2Y1AqgnQZ1byLCcGsqSwQLHRG2": {
+    "Data": {
+      "Average Response Time": 332.4,
+      "Maximum Response Time": 414,
+      "Minimum Response Time": 270,
+      "Response Times": [
+        362,
+        314,
+        295,
+        378,
+        414,
+        270,
+        297,
+        306,
+        274,
+        414
+      ],
+      "User ID": "9L2Y1AqgnQZ1byLCcGsqSwQLHRG2"
+    }
+  },
+  "Users": {
+    "9L2Y1AqgnQZ1byLCcGsqSwQLHRG2": {
+      "displayName": "Richard Yang",
+      "email": "richy@bu.edu"
+    },
+    "w4U5rFT45LZMPX7rEgRX6ZA6xB33": {
+      "displayName": "Sora Kakigi",
+      "email": "skakigi@bu.edu"
+    }
+  }
+}
