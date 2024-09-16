@@ -51,7 +51,7 @@ const App = () => {
               const userId = auth.currentUser.uid;
 
               //referencing the userid in the database tree and getting data
-              //const dataRef = ref(database, `${userId}/Data`);
+              const dataRef = ref(database, `${userId}/Data`);
               onValue(dataRef, (snapshot) => {
                 const data = snapshot.val();
                 setData(data);
@@ -84,21 +84,20 @@ const App = () => {
       {user ? ( // if logged in, show current user's name and logout button
         <div style={{ textAlign: 'center' }}>
           <h1>Welcome, {user.displayName}</h1>
-          <h1>{user.uid}</h1>
           {data ?(
               <div>
-                  <h2>UserId: {data['User ID']}</h2>
+                  <h2>User ID: {data['User ID']}</h2>
                   <h2>Data:</h2>
                   <div>
                     <h3>Minimum Response Time: {data['Minimum Response Time']}</h3>
                     <h3>Maximum Response Time: {data['Maximum Response Time']}</h3>
                     <h3>Average Response Time: {data['Average Response Time']}</h3>
                     <h3>Response Times:</h3>
-                    <ul>
+                    <ol>
                       {data['Response Times'] && data['Response Times'].map((time,index) =>(
                           <li key={index}>{time} ms</li>
                       ))}
-                    </ul>
+                    </ol>
                   </div>
               </div>
           ) : (

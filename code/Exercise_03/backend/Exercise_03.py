@@ -13,7 +13,7 @@ import urequests
 firebase_url = "https://ec463-mini-ry-sk-default-rtdb.firebaseio.com"
 firebase_secret = "U1zevgQHhKQLamXSsfb1IdpYMNi1vVxIGIJH5M21"
 
-N: int = 3 # number of games
+N: int = 10 # number of games
 sample_ms = 10.0
 on_ms = 500
 
@@ -131,7 +131,7 @@ def scorer(t: list[int | str]) -> None: # changed from miss is type 'None' to ty
     now_str = "-".join(map(str, now[:3])) + "T" + "_".join(map(str, now[3:6]))
     filename = f"score-{now_str}.json"
 
-    print("write", filename)
+    # print("write", filename)
 
     write_json(filename, data)
     
