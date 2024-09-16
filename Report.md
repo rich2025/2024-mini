@@ -4,9 +4,9 @@ Minimum brightness value (min_bright) ~ 53600\
 Image of output and setup in 'media' folder.
 
 ## Exercise 02
-Code in 'code' folder as Exercise_02.py.\
-Added dictionary of tones with corresponding frequencies, added Twinkle Twinkle Little Star song with 'X' denoting pause. Changed duration of individual note.\
-Video in 'media' folder as Exercise_02_MusicVideo.mov.
+Code in 'code' folder as 'Exercise_02.py'.\
+Demo video in 'media' folder as 'Exercise02_Demo_Video.md'.\
+Added dictionary of tones with corresponding frequencies, added Twinkle Twinkle Little Star song with 'X' denoting pause. Changed duration of individual note.
 
 ## Exercise 03
 Code and .json files for Exercise 3 in 'code/Exercise_03' folder. \
