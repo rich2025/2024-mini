@@ -28,5 +28,5 @@ Demo videos and screenshots in 'media' folder.
 - This video shows the response time game being played on the Raspberry Pi Pico. The response time data is updated in the database and in the web application.
 - Note: This video was taken directly after the Demo Video described above.
 
-For all exercises, Visual Studio Code is used.
+Thonny and Visual Studio Code used for IDE.
 
