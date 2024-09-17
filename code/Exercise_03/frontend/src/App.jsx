@@ -84,7 +84,7 @@ const App = () => {
       {user ? ( // if logged in, show current user's name and logout button
         <div style={{ textAlign: 'center' }}>
           <h1>Welcome, {user.displayName}</h1>
-          {data ?(
+          {data ?(  // if data available, print response time statistics and user id
               <div>
                   <h2>User ID: {data['User ID']}</h2>
                   <h2>Data:</h2>

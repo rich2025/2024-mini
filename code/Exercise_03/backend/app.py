@@ -21,7 +21,7 @@ def home(): # data is initially rendered in html format, have to format to JSON
 # referenced https://stackoverflow.com/questions/22947905/flask-example-with-post
 
 @app.route('/store_user_id', methods=['POST']) # fetch and store user data from post in frontend
-def store_user_id():
+def store_user_id():    # store user data
     data = request.json
     print("Received data:", data)
 
@@ -40,7 +40,7 @@ def store_user_id():
     return jsonify({"status": "success", "message": "User data received"}), 200 
 
 @app.route('/get_user_data', methods=['GET']) # route to get user data in JSON format
-def get_user_data():
+def get_user_data():    # get user data
     if user_data["userId"]:
         return jsonify(user_data)
     else:
