@@ -4,9 +4,9 @@ Minimum brightness value (min_bright) ~ 53600\
 Image of output and setup in 'media' folder.
 
 ## Exercise 02
-Code in 'code' folder as Exercise_02.py.\
-Added dictionary of tones with corresponding frequencies, added Twinkle Twinkle Little Star song with 'X' denoting pause. Changed duration of individual note.\
-Video in 'media' folder as Exercise_02_MusicVideo.mov.
+Code in 'code' folder as 'Exercise_02.py'.\
+Demo video in 'media' folder as 'Exercise02_Demo_Video.md'.\
+Added dictionary of tones with corresponding frequencies, added Twinkle Twinkle Little Star song with 'X' denoting pause. Changed duration of individual note.
 
 ## Exercise 03
 Code and .json files for Exercise 3 in 'code/Exercise_03' folder. \
@@ -16,6 +16,7 @@ Demo videos and screenshots in 'media' folder.
 - React/Vite frontend, Python/Flask backend
 - Utilize REST API's to communicate information via HTTP requests
 - Store data in Firebase Realtime Database with Google Authentication
+- Retrive Google User IDs to differentiate user data
 
 ### Demo Video (media/Exercise03_Demo_Video.md)
 1) In the demonstration video, we start by logging into an account with pre-existing response time data. This data can be seen in the Firebase Realtime Database.
@@ -28,5 +29,5 @@ Demo videos and screenshots in 'media' folder.
 - This video shows the response time game being played on the Raspberry Pi Pico. The response time data is updated in the database and in the web application.
 - Note: This video was taken directly after the Demo Video described above.
 
-For all exercises, Visual Studio Code is used.
+Thonny and Visual Studio Code used for IDE.
 
