@@ -16,6 +16,7 @@ Demo videos and screenshots in 'media' folder.
 - React/Vite frontend, Python/Flask backend
 - Utilize REST API's to communicate information via HTTP requests
 - Store data in Firebase Realtime Database with Google Authentication
+- Retrive Google User IDs to differentiate user data
 
 ### Demo Video (media/Exercise03_Demo_Video.md)
 1) In the demonstration video, we start by logging into an account with pre-existing response time data. This data can be seen in the Firebase Realtime Database.
