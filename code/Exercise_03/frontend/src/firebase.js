@@ -9,14 +9,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCwmP_eWmRdyoZ7h1-r6PCAOocibS2BFTU",
-  authDomain: "ec463-mini-ry-sk.firebaseapp.com",
-  databaseURL: "https://ec463-mini-ry-sk-default-rtdb.firebaseio.com",
-  projectId: "ec463-mini-ry-sk",
-  storageBucket: "ec463-mini-ry-sk.appspot.com",
-  messagingSenderId: "819894863579",
-  appId: "1:819894863579:web:b5ed8bdcfc68450f332efe",
-  measurementId: "G-P7H2ZGEKLK"
+ // redacted
 };
 
 // Initialize Firebase
