@@ -10,8 +10,8 @@ import urequests as requests
 import network
 import urequests
 
-firebase_url = "https://ec463-mini-ry-sk-default-rtdb.firebaseio.com"
-firebase_secret = "U1zevgQHhKQLamXSsfb1IdpYMNi1vVxIGIJH5M21"
+firebase_url = "redacted"
+firebase_secret = "redacted"
 
 N: int = 10 # number of games
 sample_ms = 10.0
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     # referenced https://projects.raspberrypi.org/en/projects/get-started-pico-w/2
     wlan = network.WLAN(network.STA_IF) # connection to the network
     wlan.active(True)
-    wlan.connect('mattrichdanbl', 'xy1234321*')
+    wlan.connect('mattrichdanbl', 'redacted')
     while not wlan.isconnected():
         pass
 
